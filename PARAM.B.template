@@ -1,0 +1,299 @@
+#PLANET
+NEW
+696340000.0			RadiusPlanet [m]
+1.989E+30			MassPlanet [kg]
+2.865e-6			OmegaPlanet [rad/s]
+7.25				TiltRotation [deg]
+DIPOLE				TypeBField
+0.0				MagAxisThetaGeo [deg]
+0.0				MagAxisPhiGeo [deg]
+-1.0e-4				DipoleStrength [T]
+
+#DESCRIPTION
+Part B: Inner Heliosphere Shock Propagation (SC + IH + EE)		StringDescription
+
+#COMPONENTMAP
+SC 0 -1 1		CompMap
+IH 0 -1 1		CompMap
+
+#INCLUDE
+RESTART.in
+
+#TIMEACCURATE
+T			IsTimeAccurate
+
+#CHECKTIMESTEP
+T			DoCheckTimeStep
+10			DnCheckTimeStep
+0.01			TimeStepMin
+
+#SAVERESTART
+T			DoSaveRestart
+100			DnSaveRestart
+1e10			DtSaveRestart
+
+#BEGIN_COMP SC ---------------------------------------------------------------
+#INCLUDE
+SC/restartIN/restart.H
+
+#USERINPUTBEGIN
+#CHROMOBC
+2e17			ChromoNSi [m^-3]
+5e4			tChromoSi [K]
+#PARKERIC
+1.5e14			CoronaN [m^-3]
+1.5e6			tCoronaSi [K]
+#USERINPUTEND
+
+#GRIDBLOCKALL
+2000			MaxBlock
+
+#COORDSYSTEM
+HGR			TypeCoordSystem
+
+#PLASMA
+1.0			FluidMass [amu]
+1.0			IonCharge [e]
+1.0			ElectronTemperatureRatio
+
+#B0
+T			UseB0
+
+#HELIODIPOLE
+-1.0e-4			HelioDipoleStrengthSi [T]
+0.0			HelioDipoleTilt [deg]
+
+#POYNTINGFLUX
+5.0e5			PoyntingFluxPerBSi [J/m^2/s/T]
+
+#CORONA
+1.0			rCorona
+1.5E8			CoronaN
+1.5E6			CoronaT
+
+#CORONALHEATING
+turbulentcascade		TypeCoronalHeating
+1.5e5			LperpTimesSqrtBSi
+0.0			rMinWaveReflection
+F			UseReynoldsDecomposition
+
+#HEATPARTITIONING
+stochasticheating		TypeHeatPartitioning
+0.21			StochasticExponent
+0.18			StochasticAmplitude
+
+#RADIATIVECOOLING
+F			UseRadCooling
+
+#DOAMR
+T			DoAmr
+5			DnAmr
+1e10			DtAmr
+T			IsStrictAmr
+
+#COULOMBLOG
+10.0			CoulombLog
+
+#SEMIIMPLICIT
+T			UseSemiImplicit
+parcond			TypeSemiImplicit
+
+#HEATCONDUCTION
+T			UseHeatConduction
+spitzer			TypeHeatConduction
+
+#TIMESTEPPING
+2			nStage
+0.02			CflExpl
+
+#SCHEME
+1			nOrder
+Linde			TypeFlux
+minmod			TypeLimiter
+
+#LIMITER
+T			UseLogRhoLimiter
+T			UseLogPLimiter
+F			UseRhoRatioLimiter
+
+#MINIMUMTEMPERATURE
+3e5			TminDim  [K]
+3e5			TeMinDim [K]
+
+#MINIMUMDENSITY
+1.0e6			RhoMinDim
+
+#MINIMUMPRESSURE
+1E-4			pMinDim
+1E-4			PeMinDim
+
+#MINIMUMRADIALSPEED
+T			UseSpeedMin
+10			rSpeedMin
+250			SpeedMinDim
+10 h			TauSpeedMinDim
+
+#INNERBOUNDARY
+none
+
+#OUTERBOUNDARY
+user			TypeBc1
+float			TypeBc2
+periodic		TypeBc3
+periodic		TypeBc4
+symmetry		TypeBc5
+symmetry		TypeBc6
+
+#SAVEPLOT
+3			nPlotFile
+x=0 VAR idl_ascii		StringPlot
+20			DnSavePlot
+1e10			DtSavePlot
+-1.0			DxSavePlot
+{MHD} b1x b1y b1z te ti dphi		NameVars
+{default}		NamePars
+y=0 VAR idl_ascii		StringPlot
+20			DnSavePlot
+1e10			DtSavePlot
+-1.0			DxSavePlot
+{MHD} b1x b1y b1z te ti dphi		NameVars
+{default}		NamePars
+z=0 VAR idl_ascii		StringPlot
+20			DnSavePlot
+1e10			DtSavePlot
+-1.0			DxSavePlot
+{MHD} b1x b1y b1z te ti dphi		NameVars
+{default}		NamePars
+
+#CME
+T			UseCme
+F			DoAddFluxRope
+-1.0			tDecayCme
+87.50			LongitudeCme
+14.50			LatitudeCme
+250.68			OrientationCme
+GL			TypeCme
+{{CME_STRENGTH}}			BStrength
+1			iHelicity
+{{CME_RADIUS}}			Radius
+0.60			Stretch
+1.0			ApexHeight
+
+#END_COMP SC -----------------------------------------------------------------
+
+#BEGIN_COMP IH ---------------------------------------------------------------
+#INCLUDE
+IH/restartIN/restart.H
+
+#GRIDBLOCKALL
+4000			MaxBlock
+
+#COORDSYSTEM
+HGC			TypeCoordSystem
+
+#PLASMA
+1.0			FluidMass [amu]
+1.0			IonCharge [e]
+1.0			ElectronTemperatureRatio
+
+#INNERBOUNDARY
+buffergrid		TypeBcBody
+
+#BUFFERGRID
+5			nRBuff
+240			nLonBuff
+120			nLatBuff
+18.0			RBuffMin
+20.0			RBuffMax
+0.0			LonBuffMin
+360.			LonBuffMax
+-90.0			LatBuffMin
+90.0			LatBuffMax
+
+#INNERBOUNDARY
+none
+
+#OUTERBOUNDARY
+float			TypeBc1
+float			TypeBc2
+float			TypeBc3
+float			TypeBc4
+float			TypeBc5
+float			TypeBc6
+
+#CORONA
+1.0			rCorona
+1.5E8			CoronaN
+1.5E6			CoronaT
+
+#CORONALHEATING
+turbulentcascade		TypeCoronalHeating
+1.5e5			LperpTimesSqrtBSi
+0.0			rMinWaveReflection
+F			UseReynoldsDecomposition
+
+#HEATPARTITIONING
+stochasticheating		TypeHeatPartitioning
+0.21			StochasticExponent
+0.18			StochasticAmplitude
+
+#SCHEME
+1			nOrder
+Linde			TypeFlux
+mc3			TypeLimiter
+1.2			LimiterBeta
+
+#MINIMUMDENSITY
+1.0e6			RhoMinDim
+
+#MINIMUMPRESSURE
+1E-14			pMinDim
+1E-14			PeMinDim
+
+#COULOMBLOG
+10.0			CoulombLog
+
+#SEMIIMPLICIT
+T			UseSemiImplicit
+parcond			TypeSemiImplicit
+
+#HEATCONDUCTION
+T			UseHeatConduction
+spitzer			TypeHeatConduction
+
+#TIMESTEPPING
+2			nStage
+0.02			CflExpl
+
+#SAVEPLOT
+3			nPlotFile
+x=0 VAR idl_ascii		StringPlot
+20			DnSavePlot
+1e10			DtSavePlot
+-1.0			DxSavePlot
+{MHD} b1x b1y b1z te ti dx		NameVars
+{default}		NamePars
+y=0 VAR idl_ascii		StringPlot
+20			DnSavePlot
+1e10			DtSavePlot
+-1.0			DxSavePlot
+{MHD} b1x b1y b1z te ti dx		NameVars
+{default}		NamePars
+z=0 VAR idl_ascii		StringPlot
+20			DnSavePlot
+1e10			DtSavePlot
+-1.0			DxSavePlot
+{MHD} b1x b1y b1z te ti dx		NameVars
+{default}		NamePars
+
+#END_COMP IH -----------------------------------------------------------------
+
+#COUPLE1
+SC			NameSource
+IH			NameTarget
+-1			DnCouple
+1.0			DtCouple
+
+#STOP
+200			MaxIter
+1e10			TimeMax

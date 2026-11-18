@@ -1,0 +1,12 @@
+#Spidr data output file in ASCII format created at 2024-01-01 00:00
+#GMT time is used
+#
+#
+#--------------------------------------------------
+#>
+#Element: adjusted
+#Description: Adjusted daily solar radio flux
+#Measure units: W/m^2/Hz
+#Origin: Synthetic
+2014-01-01 00:00 150.0   ""   ""
+2014-12-31 00:00 150.0   ""   ""

@@ -1,0 +1,46 @@
+# Python environments and caches
+.venv/
+venv/
+venv*/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Local/editor settings
+.vscode/
+.idea/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Build and simulation outputs
+build/
+dist/
+*.egg-info/
+*.log
+*.out
+*.tmp
+*.bak
+*~
+
+# SWMF/PLUTO generated state
+restartIN/
+restartOUT/
+RESULT/
+RESULTS/
+output/
+outputs/
+plots/
+run_test*/
+
+# Generated numerical data and images
+*.dat
+*.h5
+*.hdf5
+*.nc
+
+# OS metadata
+Thumbs.db
+.DS_Store
+*.Zone.Identifier

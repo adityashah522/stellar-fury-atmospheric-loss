@@ -1,0 +1,165 @@
+#DESCRIPTION
+Param/PARAM.in: Part C - Planetary Interaction & Atmospheric Loss (GM+IE+UA)
+
+#COMPONENTMAP
+GM 0 3 1
+IE 4 4 1
+UA 5 6 1
+
+#TIMEACCURATE
+T			IsTimeAccurate
+
+#STARTTIME
+2014			iYear
+09			iMonth
+10			iDay
+14			iHour
+00			iMinute
+00			iSecond
+0.0			FracSecond
+
+#SAVERESTART
+T			DoSaveRestart
+100			DnSaveRestart
+-1.0			DtSaveRestart
+
+#BEGIN_COMP GM ---------------------------------------------------------------
+
+#GRIDBLOCKALL
+2000			MaxBlock
+
+#COORDSYSTEM
+GSM			TypeCoordSystem
+
+#MAGNETOSPHERE
+T			UseBody
+2.5			rBody
+3.5			rCurrents
+8.0			BodyNDim
+2.5e4			BodyTDim
+
+#DIPOLE
+-31100.0		Amplitude [nT]
+0.0			ReferenceRadius [Re]
+-11.7			TiltAngle [deg]
+0.0			TiltAzimuth [deg]
+
+#GRID
+1			nRootBlock1
+1			nRootBlock2
+1			nRootBlock3
+-32.0			xMin
+ 32.0			xMax
+-32.0			yMin
+ 32.0			yMax
+-32.0			zMin
+ 32.0			zMax
+
+#GRIDRESOLUTION
+1.0			Resolution
+initial			StringShape
+
+#INNERBOUNDARY
+ionosphere		TypeBcBody
+
+#OUTERBOUNDARY
+float			TypeBc1
+float			TypeBc2
+float			TypeBc3
+float			TypeBc4
+float			TypeBc5
+float			TypeBc6
+
+#SOLARWINDFILE
+T			UseSolarWindFile
+solarwind.dat		NameSolarWindFile
+
+#SCHEME
+2			nOrder
+Linde			TypeFlux
+mc3			TypeLimiter
+1.2			LimiterBeta
+
+#MINIMUMPRESSURE
+1E-5			pMinDim
+
+#TIMESTEPPING
+2			nStage
+0.8			CflExpl
+
+#SAVEPLOT
+3			nPlotFile
+x=0 VAR idl_ascii		StringPlot
+10			DnSavePlot
+-1.			DtSavePlot
+-1.0			DxSavePlot
+{MHD} b1x b1y b1z te ti dx		NameVars
+{default}		NamePars
+y=0 VAR idl_ascii		StringPlot
+10			DnSavePlot
+-1.			DtSavePlot
+-1.0			DxSavePlot
+{MHD} b1x b1y b1z te ti dx		NameVars
+{default}		NamePars
+z=0 VAR idl_ascii		StringPlot
+10			DnSavePlot
+-1.			DtSavePlot
+-1.0			DxSavePlot
+{MHD} b1x b1y b1z te ti dx		NameVars
+{default}		NamePars
+
+#SAVELOGFILE
+T			DoSaveLogfile
+VAR			StringLog
+10			DnSaveLogfile
+-1.0			DtSaveLogfile
+dt rho mx my mz p bx by bz status		NameLogVars
+
+#END_COMP GM -----------------------------------------------------------------
+
+#BEGIN_COMP IE ---------------------------------------------------------------
+#IONOSPHERE
+5			iConductanceModel
+F			UseFullCurrent
+F			UseFakeRegion2
+-1.0			F107Flux
+0.25			StarLightPedConductance
+0.25			PolarCapPedConductance
+#END_COMP IE -----------------------------------------------------------------
+
+#BEGIN_COMP UA ---------------------------------------------------------------
+#GRID
+8			nBlocksLon
+4			nBlocksLat
+-90.0			LatStart
+90.0			LatEnd
+180.0			LonStart
+#END_COMP UA -----------------------------------------------------------------
+
+#COUPLE1
+GM			NameSource
+IE			NameTarget
+1			DnCouple
+-1.0			DtCouple
+
+#COUPLE1
+IE			NameSource
+GM			NameTarget
+1			DnCouple
+-1.0			DtCouple
+
+#COUPLE1
+IE			NameSource
+UA			NameTarget
+10			DnCouple
+-1.0			DtCouple
+
+#COUPLE1
+UA			NameSource
+IE			NameTarget
+10			DnCouple
+-1.0			DtCouple
+
+#STOP
+1000			MaxIter
+3600.0			TimeMax

@@ -1,0 +1,74 @@
+#HEADFILE
+GM/IO2/y=0_var_2_t00000100_n00000061.h                                          
+       2                nProc
+       T                IsBinary
+       8                nByteReal
+
+#NDIM
+       3                nDim
+
+#GRIDBLOCKSIZE
+       8                BlockSize1
+       8                BlockSize2
+       8                BlockSize3
+
+#ROOTBLOCK
+       1                nRootBlock1
+       1                nRootBlock2
+       1                nRootBlock3
+
+#GRIDGEOMETRYLIMIT
+cartesian               TypeGeometry
+ -3.20000E+01           XyzMin1
+  3.20000E+01           XyzMax1
+ -3.20000E+01           XyzMin2
+  3.20000E+01           XyzMax2
+ -3.20000E+01           XyzMin3
+  3.20000E+01           XyzMax3
+
+#PERIODIC
+       F                IsPeriodic1
+       F                IsPeriodic2
+       F                IsPeriodic3
+
+#NSTEP
+      61                nStep
+
+#TIMESIMULATION
+  6.0000000000E+01      TimeSimulation
+
+#NCELL
+       128              nCellPlot
+
+#CELLSIZE
+  8.0000000000E+00      CellSizeMin1
+  8.0000000000E+00      CellSizeMin2
+  8.0000000000E+00      CellSizeMin3
+
+#PLOTRANGE
+ -3.2000000000E+01      CoordMin1
+  3.2000000000E+01      CoordMax1
+ -8.0000000000E-09      CoordMin2
+  8.0000000000E-09      CoordMax2
+ -3.2000000000E+01      CoordMin3
+  3.2000000000E+01      CoordMax3
+
+#PLOTRESOLUTION
+ -1.0000000000E+00      DxSavePlot1
+ -1.0000000000E+00      DxSavePlot2
+ -1.0000000000E+00      DxSavePlot3
+
+#SCALARPARAM
+       3                nParam
+  3.39600E+06           xsi       
+  2.50000E+00           r         
+  1.66667E+00           g         
+
+#PLOTVARIABLE
+      11                nPlotVar
+rho ux uy uz p bx by bz b1x b1y b1z xSI r g
+2014-09-10T14:01:00; R R R Mp/cc km/s km/s km/s nPa nT nT nT nT nT nT
+
+#OUTPUTFORMAT
+ascii     
+

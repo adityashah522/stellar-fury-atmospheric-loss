@@ -1,0 +1,72 @@
+ BLOCKS
+      1 nBlocksAlt
+      1 nBlocksLat
+      2 nBlocksLon
+ 
+ TIME
+   2014 Year
+      9 Month
+     10 Day
+     14 Hour
+      0 Minute
+      0 Second
+      0 Millisecond
+ 
+ VERSION
+   3.1400000000000001     
+ 
+ NUMERICAL VALUES
+     44 nvars
+    124 nAltitudes
+     13 nLatitudes
+     13 nLongitudes
+ 
+ VARIABLE LIST
+      1 Longitude
+      2 Latitude
+      3 Altitude
+      4 Rho
+      5 [CO!D2!N             ]
+      6 [CO                  ]
+      7 [O                   ]
+      8 [N!D2!N              ]
+      9 [O!D2!N              ]
+     10 [Ar                  ]
+     11 [He                  ]
+     12 [N                   ]
+     13 [H                   ]
+     14 [N(2D)               ]
+     15 [NO                  ]
+     16 [C                   ]
+     17 Temperature
+     18 V!Dn!N (east)
+     19 V!Dn!N (north)
+     20 V!Dn!N (up)
+     21 V!Dn!N (up,CO!D2!N             )
+     22 V!Dn!N (up,CO                  )
+     23 V!Dn!N (up,O                   )
+     24 V!Dn!N (up,N!D2!N              )
+     25 V!Dn!N (up,O!D2!N              )
+     26 V!Dn!N (up,Ar                  )
+     27 V!Dn!N (up,He                  )
+     28 V!Dn!N (up,N                   )
+     29 [O!U+!N              ]
+     30 [O!D2!U+!N           ]
+     31 [CO!D2!U+!N          ]
+     32 [N!D2!U+!N           ]
+     33 [NO!U+!N             ]
+     34 [CO!U+!N             ]
+     35 [C!U+!N              ]
+     36 [e-                  ]
+     37 eTemperature
+     38 iTemperature
+     39 V!Di!N (east)
+     40 V!Di!N (north)
+     41 V!Di!N (up)
+     42 Solar Zenith Angle
+     43 Local Time (hr)
+     44 NO Emissions (ph/cm^3/s)
+ 
+ 
+ END
+ 

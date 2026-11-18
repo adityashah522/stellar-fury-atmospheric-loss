@@ -1,0 +1,15 @@
+#Element: flux
+#Missing value: -999.0
+#yyyy-mm-dd hh:mm:ss value
+2014 09 10 00 00  150.0
+2014 09 11 00 00  150.0
+#Element: power
+#Missing value: -999.0
+#yyyy-mm-dd hh:mm:ss value
+2014 09 10 00 00   10.0
+2014 09 11 00 00   10.0
+#Element: kp
+#Missing value: -999.0
+#yyyy-mm-dd hh:mm:ss value
+2014 09 10 00 00    1.0
+2014 09 11 00 00    1.0

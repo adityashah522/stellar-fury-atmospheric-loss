@@ -1,0 +1,123 @@
+#DESCRIPTION
+Param/EARTH/PARAM.in: Earth Magnetosphere with Weimer05
+
+#COMPONENTMAP
+GM 0 -1 1
+IE 0 0 1
+
+#TIMEACCURATE
+F			DoTimeAccurate
+
+#PLANET
+Earth
+
+#STARTTIME
+1998			iYear
+5			iMonth
+1			iDay
+0			iHour
+0			iMinute
+0			iSecond
+0.0 			FracSecond
+
+#SAVERESTART
+F			DoSaveRestart
+
+#BEGIN_COMP GM ---------------------------------------------------------------
+
+#GRID
+2			nRootBlockX
+1			nRootBlockY
+1			nRootBlockZ
+-224.                   xMin
+ +32.                   xMax
+ -64.                   yMin
+ +64.                   yMax
+ -64.                   zMin
+ +64.                   zMax
+
+#GRIDRESOLUTION
+1/8                     Resolution
+sphere0                 NameArea
+ 5.25                   rSphere
+
+#GRIDRESOLUTION
+1.0                     Resolution
+sphere0                 NameArea
+17.5                    rSphere
+
+#GRIDRESOLUTION
+2.0                     Resolution
+initial
+
+#AMR
+100			DnRefine
+F			DoAutoRefine
+
+#BODY
+T			UseBody
+2.5			rBody      [rEarth]
+3.5			rCurrents  [rEarth]
+28.0			BodyRhoDim [amu/cc]
+25000.0			BodyTDim   [K]
+
+#SOLARWIND
+{{SW_RHO}}                     SwRhoDim [amu/cc]
+100000.0                SwTDim   [K]
+  {{SW_UX}}                SwUxDim  [km/s]
+     0.0                SwUyDim  [km/s]
+     0.0                SwUzDim  [km/s]
+     0.0               SwBxDim  [nT]
+     0.0                SwByDim  [nT]
+    {{SW_BZ}}                SwBzDim  [nT]
+
+#OUTERBOUNDARY
+outflow			TypeBcEast
+inflow			TypeBcWest
+float			TypeBcSouth
+float			TypeBcNorth
+float			TypeBcBottom
+float			TypeBcTop
+
+#INNERBOUNDARY
+ionosphere		TypeBcInner
+
+#SCHEME
+1			nOrder
+Rusanov			TypeFlux
+minmod			TypeLimiter
+
+#SAVELOGFILE
+T			DoSaveLogfile
+RAW			StringLogfile
+1			DnSaveLogfile
+-1.			DtSaveLogfile
+
+#SAVEPLOT
+2                       nPlotFiles
+y=0 MHD idl             StringPlot
+100                       DnSavePlot
+-1.			DtSavePlot
+-1.			Dx
+z=0 MHD idl             StringPlot
+100                       DnSavePlot
+-1.			DtSavePlot
+-1.			Dx
+
+#END_COMP GM -----------------------------------------------------------------
+
+#BEGIN_COMP IE ---------------------------------------------------------------
+
+#IONOSPHERE
+5			iConductanceModel (5=realistic oval)
+F			UseFullCurrent
+F			UseFakeRegion2
+-1.0			F107Flux
+0.25			StarLightPedConductance
+0.25			PolarCapPedConductance
+
+#END_COMP IE -----------------------------------------------------------------
+
+#STOP
+100			MaxIteration
+-1.0			tSimulationMax
